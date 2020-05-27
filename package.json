@@ -1,0 +1,20 @@
+{
+  "name": "customerwebapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Tony",
+  "license": "ISC",
+  "dependencies": {
+    "amazon-cognito-identity-js": "^4.3.0",
+    "aws-sdk": "^2.684.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.3",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2"
+  }
+}
