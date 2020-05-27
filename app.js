@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+require("dotenv").config();
 var app = express();
 app.get("/", (req, res) =>
   res.send("Hello Wfrom nodejs cognito authentication server")
