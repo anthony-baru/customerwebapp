@@ -7,4 +7,6 @@ router.get("/hello", authMiddleware.Validate, helloController.simple_hello);
 router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);
 router.post("/auth/validate", authController.validate_token);
+router.post("/auth/confirm-registration", authController.sendConfirmationCode);
+
 module.exports = router;

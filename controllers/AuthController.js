@@ -21,3 +21,13 @@ exports.validate_token = function (req, res) {
     res.send(result);
   });
 };
+
+exports.sendConfirmationCode = (req, res) => {
+  let validate = authService.sendConfirmationCode(req.body.token, function (
+    err,
+    result
+  ) {
+    if (err) res.send(err.message);
+    res.send(result);
+  });
+};

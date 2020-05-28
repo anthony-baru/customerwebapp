@@ -124,3 +124,28 @@ exports.Validate = function (token, callback) {
     }
   );
 };
+
+exports.confirmationCode = (req, res) => {
+  const name = req.body.name;
+  const code = req.body.code;
+  var poolData = {
+    UserPoolId: process.env.POOL_USER_ID,
+    ClientId: process.env.POOL_CLIENT_ID,
+  };
+
+  var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+  var userData = {
+    Username: email,
+    Pool: userPool,
+  };
+
+  var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+  cognitoUser.confirmRegistration("123456", true, function (err, result) {
+    if (err) {
+      alert(err.message || JSON.stringify(err));
+      return;
+    }
+    console.log("call result: " + result);
+    return result;
+  });
+};
