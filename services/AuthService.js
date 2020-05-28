@@ -2,7 +2,7 @@ global.fetch = require("node-fetch");
 global.navigator = () => null;
 const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 const poolData = {
-  UserPoolId: process.env.USER_POOL_ID,
+  UserPoolId: process.env.POOL_USER_ID,
   ClientId: process.env.POOL_CLIENT_ID,
 };
 const pool_region = process.env.POOL_REGION;
