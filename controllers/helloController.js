@@ -1,3 +1,3 @@
 exports.simple_hello = function (req, res) {
-  res.send("Hello from our node server");
+  res.send("Authorized through cognito");
 };

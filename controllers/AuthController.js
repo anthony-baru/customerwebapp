@@ -31,3 +31,10 @@ exports.sendConfirmationCode = (req, res) => {
     res.send(result);
   });
 };
+
+exports.confirmRegistration = (req, res) => {
+  authService.confirmReg(req.body.email, req.body.code, function (err, result) {
+    if (err) res.send(err.message);
+    return res.send(result);
+  });
+};

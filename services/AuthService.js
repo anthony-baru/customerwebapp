@@ -68,7 +68,7 @@ exports.Login = function (body, callback) {
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: function (result) {
-      var accesstoken = result.getAccessToken().getJwtToken();
+      var accesstoken = result.getIdToken().getJwtToken();
       callback(null, accesstoken);
     },
     onFailure: function (err) {
@@ -125,9 +125,10 @@ exports.Validate = function (token, callback) {
   );
 };
 
-exports.confirmationCode = (req, res) => {
-  const name = req.body.name;
-  const code = req.body.code;
+exports.confirmReg = (email, code, callback) => {
+  // let name = req.body.name;
+  // let email = email;
+  let coded = code.toString();
   var poolData = {
     UserPoolId: process.env.POOL_USER_ID,
     ClientId: process.env.POOL_CLIENT_ID,
@@ -140,12 +141,13 @@ exports.confirmationCode = (req, res) => {
   };
 
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-  cognitoUser.confirmRegistration("123456", true, function (err, result) {
+  cognitoUser.confirmRegistration(coded, true, function (err, result) {
     if (err) {
-      alert(err.message || JSON.stringify(err));
-      return;
+      console.log(err);
+      // alert(err.message || JSON.stringify(err));
+      callback(new Error(err.message || JSON.stringify(err)));
     }
     console.log("call result: " + result);
-    return result;
+    callback(null, result);
   });
 };
